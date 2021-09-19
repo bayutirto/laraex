@@ -21,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ** public route
-Route::prefix('v1')->group(function () {
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']);
-});
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 // ** protected route
 Route::group(['middleware' => ['auth:sanctum']], function () {
