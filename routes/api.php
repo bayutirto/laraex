@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,11 @@ use Illuminate\Support\Facades\Route;
 // ** public route
 Route::prefix('v1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
 // ** protected route
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    //
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [UserController::class, 'findAll']);
 });
